@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react'
 import Timer from './components/Timer/Timer'
 
-const App = () => {
-  let numb: number = 12
-
+const App = (): JSX.Element => {
   const [time, setTime] = useState<number>(0)
   const [timer, setTimer] = useState<any>(null)
 
@@ -11,13 +9,13 @@ const App = () => {
     return () => {
       if (timer) clearInterval(timer)
     }
-  }, [])
+  })
 
   const handleStart = () => {
     setTimer(
       setInterval(() => {
-        setTime((prevValue) => prevValue + 1)
-      }, 1)
+        setTime((prevValue) => prevValue + 100)
+      }, 100)
     )
   }
 

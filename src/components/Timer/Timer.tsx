@@ -1,6 +1,3 @@
-import { type } from 'os'
-import React from 'react'
-
 type TimerProps = {
   time: number
 }
@@ -13,11 +10,13 @@ const Timer = ({ time }: TimerProps): JSX.Element => {
     const seconds: number = totalSeconds % 60
     const ms: number = miliseconds % 1000
 
+    console.log(ms)
+
     const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes
       .toString()
-      .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${ms
-      .toString()
-      .padStart(3, '0')}`
+      .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${
+      ms.toString()[0]
+    }`
 
     return formattedTime
   }
