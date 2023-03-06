@@ -9,7 +9,7 @@ const App = (): JSX.Element => {
     return () => {
       if (timer) clearInterval(timer)
     }
-  })
+  }, [timer])
 
   const handleStart = () => {
     setTimer(
