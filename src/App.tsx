@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from 'react'
+import Timer from './components/Timer/Timer'
 
-function App() {
+const App = () => {
+  let numb: number = 12
+
+  const [time, setTime] = useState<number>(0)
+  const [timer, setTimer] = useState<any>(null)
+
+  useEffect(() => {
+    return () => {
+      if (timer) clearInterval(timer)
+    }
+  }, [])
+
+  const handleStart = () => {
+    setTimer(
+      setInterval(() => {
+        setTime((prevValue) => prevValue + 1)
+      }, 1)
+    )
+  }
+
+  const handleStop = () => {
+    clearInterval(timer)
+  }
+
+  const handleReset = () => {
+    clearInterval(timer)
+    setTime(0)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <Timer time={time} />
+      <button onClick={handleStart}>Start</button>
+      <button onClick={handleStop}>Stop</button>
+      <button onClick={handleReset}>Reset</button>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
